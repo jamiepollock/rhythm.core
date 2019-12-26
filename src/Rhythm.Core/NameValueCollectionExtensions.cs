@@ -7,7 +7,6 @@
     using System.Collections.Specialized;
     using System.Globalization;
     using System.Linq;
-    using System.Runtime.InteropServices.ComTypes;
 
     using Rhythm.Core.Enums;
 
