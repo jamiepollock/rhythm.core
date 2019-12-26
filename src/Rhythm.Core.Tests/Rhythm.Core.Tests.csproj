@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NameValueCollectionExtensions\GetBooleanValueTests.cs" />
     <Compile Include="NameValueCollectionExtensions\GetStringValueTests.cs" />
     <Compile Include="NameValueCollectionExtensions\HasKeyTests.cs" />
     <Compile Include="NameValueCollectionExtensions\TryGetValuesTests.cs" />

@@ -13,6 +13,23 @@
     {
         #region Properties
         /// <summary>
+        /// Gets a boolean value or fallback.
+        /// </summary>
+        /// <param name="nvc">The name value collection.</param>
+        /// <param name="key">The expected key.</param>
+        /// <param name="fallback">The fallback value if no value is found.</param>
+        /// <returns>A <see cref="bool"/>.</returns>
+        public static bool GetBooleanValue(this NameValueCollection nvc, string key, bool fallback = default(bool))
+        {
+            if (nvc.TryGetValue(key, out var initialValue) == false)
+            {
+                return fallback;
+            }
+
+            return bool.TryParse(initialValue, out var value) ? value : fallback;
+        }
+
+        /// <summary>
         /// Gets a single string value or fallback.
         /// </summary>
         /// <param name="nvc">The name value collection.</param>
