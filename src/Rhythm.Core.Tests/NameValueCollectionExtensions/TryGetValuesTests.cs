@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.Linq;
-    using System.Runtime.InteropServices;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -54,7 +53,7 @@
             Assert.IsTrue(outcome);
             Assert.AreEqual(expected.Count(), values.Count());
 
-            for (var i = 0; i > expected.Count; i++)
+            for (var i = 0; i < expected.Count; i++)
             {
                 var valuesItem = values.ElementAt(i);
                 var expectedItem = expected.ElementAt(i);
