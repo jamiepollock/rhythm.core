@@ -34,6 +34,60 @@
         }
 
         /// <summary>
+        /// Gets a single enum value or fallback. Enum parsing is case sensitive.
+        /// </summary>
+        /// <typeparam name="T">The type of the enum. If this type is not an enum the fallback value will always be returned.</typeparam>
+        /// <param name="nvc">The name value collection.</param>
+        /// <param name="key">The expected key.</param>
+        /// <param name="fallback">The fallback value if no value is found.</param>
+        /// <returns>A <typeparamref name="T"/>.</returns>
+        public static T GetEnumValue<T>(this NameValueCollection nvc, string key, T fallback = default(T))
+            where T : struct
+        {
+            return nvc.GetEnumValue<T>(key, false, fallback);
+        }
+
+        /// <summary>
+        /// Gets a single enum value or fallback. Enum parsing is case insensitive.
+        /// </summary>
+        /// <typeparam name="T">The type of the enum. If this type is not an enum the fallback value will always be returned.</typeparam>
+        /// <param name="nvc">The name value collection.</param>
+        /// <param name="key">The expected key.</param>
+        /// <param name="fallback">The fallback value if no value is found.</param>
+        /// <returns>A <typeparamref name="T"/>.</returns>
+        public static T GetEnumValueIgnoreCase<T>(this NameValueCollection nvc, string key, T fallback = default(T))
+            where T : struct
+        {
+            return nvc.GetEnumValue<T>(key, true, fallback);
+        }
+
+        /// <summary>
+        /// Gets a single enum value or fallback.
+        /// </summary>
+        /// <typeparam name="T">The type of the enum. If this type is not an enum the fallback value will always be returned.</typeparam>
+        /// <param name="nvc">The name value collection.</param>
+        /// <param name="key">The expected key.</param>
+        /// <param name="ignoreCase">Determines if the enum parsing operation should be case insensitive.</param>
+        /// <param name="fallback">The fallback value if no value is found.</param>
+        /// <returns>A <typeparamref name="T"/>.</returns>
+        private static T GetEnumValue<T>(this NameValueCollection nvc, string key, bool ignoreCase, T fallback = default(T))
+            where T : struct
+        {
+            if (typeof(T).IsEnum == false)
+            {
+                return fallback;
+            }
+
+            if (nvc.TryGetValue(key, out var initialValue) == false)
+            {
+                return fallback;
+            }
+
+            return Enum.TryParse<T>(initialValue, ignoreCase, out var value) ? value : fallback;
+        }
+
+
+        /// <summary>
         /// Gets a single integer value or fallback.
         /// </summary>
         /// <param name="nvc">The name value collection.</param>

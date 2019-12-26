@@ -50,6 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NameValueCollectionExtensions\GetBooleanValueTests.cs" />
+    <Compile Include="NameValueCollectionExtensions\GetEnumTestsBase.cs" />
+    <Compile Include="NameValueCollectionExtensions\GetEnumValueIgnoreCaseTests.cs" />
+    <Compile Include="NameValueCollectionExtensions\GetEnumValueTests.cs" />
     <Compile Include="NameValueCollectionExtensions\GetIntegerValueTests.cs" />
     <Compile Include="NameValueCollectionExtensions\GetSplitStringValuesTests.cs" />
     <Compile Include="NameValueCollectionExtensions\GetStringValueTests.cs" />
