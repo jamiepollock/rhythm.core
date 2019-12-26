@@ -2,8 +2,10 @@
 {
 
     // Namespaces.
+    using System;
     using System.Collections.Generic;
     using System.Collections.Specialized;
+    using System.Globalization;
     using System.Linq;
     using System.Runtime.InteropServices.ComTypes;
 
@@ -45,6 +47,25 @@
             }
 
             return int.TryParse(initialValue, out var value) ? value : fallback;
+        }
+
+        /// <summary>
+        /// Gets a single integer value or fallback.
+        /// </summary>
+        /// <param name="nvc">The name value collection.</param>
+        /// <param name="key">The expected key.</param>
+        /// <param name="style">The <see cref="NumberStyles"/> used to parse any found string.</param>
+        /// <param name="provider">The <see cref="IFormatProvider"/> used to parse any found string.</param>
+        /// <param name="fallback">The fallback value if no value is found.</param>
+        /// <returns>A <see cref="int"/>.</returns>
+        public static int GetIntegerValue(this NameValueCollection nvc, string key, NumberStyles style, IFormatProvider provider, int fallback = default(int))
+        {
+            if (nvc.TryGetValue(key, out var initialValue) == false)
+            {
+                return fallback;
+            }
+
+            return int.TryParse(initialValue, style, provider, out var value) ? value : fallback;
         }
 
         /// <summary>

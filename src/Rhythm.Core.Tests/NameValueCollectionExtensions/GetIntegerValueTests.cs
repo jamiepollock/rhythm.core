@@ -1,6 +1,7 @@
 ﻿namespace Rhythm.Core.Tests.NameValueCollectionExtensions
 {
     using System.Collections.Specialized;
+    using System.Globalization;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -114,6 +115,42 @@
 
             // Assert
             Assert.AreEqual(fallback, outcome);
+        }
+
+        [TestMethod]
+        public void Given_An_Available_Matching_Key_And_Parsing_Options_Should_Return_Found_Value()
+        {
+            // Arrange
+            var unparsedValue = " 1  ";
+            var nvc = new NameValueCollection() { { "key1", unparsedValue } };
+            var styles = NumberStyles.AllowLeadingWhite | NumberStyles.AllowTrailingWhite;
+            var formatter = new CultureInfo("en-US");
+
+            // Act
+            var outcome = nvc.GetIntegerValue("key1", styles, formatter);
+            int.TryParse(unparsedValue, styles, formatter, out var parsedValue);
+
+            // Assert
+            Assert.AreEqual(parsedValue, outcome);
+            Assert.AreNotEqual(default(int), outcome);
+        }
+
+        [TestMethod]
+        public void Given_An_Available_Matching_Key_With_An_Invalid_Integer_And_Parsing_Options_Should_Return_Default_Value()
+        {
+            // Arrange
+            var unparsedValue = "  1";
+            var nvc = new NameValueCollection() { { "key1", unparsedValue } };
+            var styles = NumberStyles.AllowTrailingWhite;
+            var formatter = new CultureInfo("en-US");
+
+            // Act
+            var outcome = nvc.GetIntegerValue("key1", styles, formatter);
+            int.TryParse(unparsedValue, out var parsedValue);
+
+            // Assert
+            Assert.AreNotEqual(parsedValue, outcome);
+            Assert.AreEqual(default(int), outcome);
         }
     }
 }
