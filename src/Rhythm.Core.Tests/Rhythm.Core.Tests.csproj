@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NameValueCollectionExtensions\HasKeyTests.cs" />
+    <Compile Include="NameValueCollectionExtensions\TryGetValuesTests.cs" />
+    <Compile Include="NameValueCollectionExtensions\TryGetValueTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
