@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.Linq;
+    using System.Runtime.InteropServices.ComTypes;
 
     /// <summary>
     /// A collection of extension methods to support the <see cref="NameValueCollection"/> interface.
@@ -27,6 +28,23 @@
             }
 
             return bool.TryParse(initialValue, out var value) ? value : fallback;
+        }
+
+        /// <summary>
+        /// Gets a single integer value or fallback.
+        /// </summary>
+        /// <param name="nvc">The name value collection.</param>
+        /// <param name="key">The expected key.</param>
+        /// <param name="fallback">The fallback value if no value is found.</param>
+        /// <returns>A <see cref="int"/>.</returns>
+        public static int GetIntegerValue(this NameValueCollection nvc, string key, int fallback = default(int))
+        {
+            if (nvc.TryGetValue(key, out var initialValue) == false)
+            {
+                return fallback;
+            }
+
+            return int.TryParse(initialValue, out var value) ? value : fallback;
         }
 
         /// <summary>
