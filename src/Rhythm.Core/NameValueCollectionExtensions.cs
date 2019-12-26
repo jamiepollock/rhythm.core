@@ -13,6 +13,18 @@
     {
         #region Properties
         /// <summary>
+        /// Gets a single string value or fallback.
+        /// </summary>
+        /// <param name="nvc">The name value collection.</param>
+        /// <param name="key">The expected key.</param>
+        /// <param name="fallback">The fallback value if no value is found.</param>
+        /// <returns>A <see cref="string"/>.</returns>
+        public static string GetStringValue(this NameValueCollection nvc, string key, string fallback = default(string))
+        {
+            return nvc.TryGetValue(key, out var value) ? value : fallback;
+        }
+
+        /// <summary>
         /// Checks if the name value collection contains a key.
         /// </summary>
         /// <param name="nvc">The name value collection.</param>
