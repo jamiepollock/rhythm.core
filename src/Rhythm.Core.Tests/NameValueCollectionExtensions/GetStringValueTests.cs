@@ -8,7 +8,7 @@
     public class GetStringValueTests
     {
         [TestMethod]
-        public void Given_No_Matching_Keys_And_No_Fallback_Should_Return_Default()
+        public void Given_No_Matching_Keys_And_No_Fallback_Should_Return_Default_Value()
         {
             // Arrange
             var nvc = new NameValueCollection { { "key1", "value1" }, { "key2", "value2" }, { "key3", "value3" } };
@@ -21,7 +21,7 @@
         }
 
         [TestMethod]
-        public void Given_No_Keys_And_No_Fallback_Should_Return_False_And_Default()
+        public void Given_No_Keys_And_No_Fallback_Should_Return_Default_Value()
         {
             // Arrange
             var nvc = new NameValueCollection();
@@ -34,7 +34,7 @@
         }
 
         [TestMethod]
-        public void Given_No_Matching_Keys_And_Fallback_Should_Return_Fallback()
+        public void Given_No_Matching_Keys_And_Fallback_Should_Return_Fallback_Value()
         {
             // Arrange
             var nvc = new NameValueCollection { { "key1", "value1" }, { "key2", "value2" }, { "key3", "value3" } };
@@ -48,7 +48,7 @@
         }
 
         [TestMethod]
-        public void Given_No_Keys_And_A_Fallback_Should_Return_False_And_Fallback()
+        public void Given_No_Keys_And_A_Fallback_Should_Return_Fallback_Value()
         {
             // Arrange
             var nvc = new NameValueCollection();
@@ -62,7 +62,7 @@
         }
 
         [TestMethod]
-        public void Given_An_Available_Matching_Key_And_No_Fallback_Should_Return_Value()
+        public void Given_An_Available_Matching_Key_And_No_Fallback_Should_Return_Found_Value()
         {
             // Arrange
             var nvc = new NameValueCollection() { { "key1", "value1" } };
@@ -75,7 +75,7 @@
         }
 
         [TestMethod]
-        public void Given_An_Available_Matching_Key_And_Fallback_Should_Return_Value_Not_Fallback()
+        public void Given_An_Available_Matching_Key_And_Fallback_Should_Return_Found_Value_Not_Fallback_Value()
         {
             // Arrange
             var nvc = new NameValueCollection() { { "key1", "value1" } };
