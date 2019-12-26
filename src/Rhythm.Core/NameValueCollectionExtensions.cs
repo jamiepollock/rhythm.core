@@ -9,6 +9,8 @@
     using System.Linq;
     using System.Runtime.InteropServices.ComTypes;
 
+    using Rhythm.Core.Enums;
+
     /// <summary>
     /// A collection of extension methods to support the <see cref="NameValueCollection"/> interface.
     /// </summary>
@@ -78,6 +80,31 @@
         public static string GetStringValue(this NameValueCollection nvc, string key, string fallback = default(string))
         {
             return nvc.TryGetValue(key, out var value) ? value : fallback;
+        }
+
+        /// <summary>
+        /// Gets an array of string values split by a delimiter.
+        /// </summary>
+        /// <param name="nvc">The name value collection.</param>
+        /// <param name="key">The expected key.</param>
+        /// <param name="delimiter">The <see cref="StringSplitDelimiters"/> to split the found value by.</param>
+        /// <returns>A <see><cref>IEnumerable{string}</cref></see>.</returns>
+        public static IEnumerable<string> GetSplitStringValues(this NameValueCollection nvc, string key, StringSplitDelimiters delimiter = StringSplitDelimiters.Default)
+        {
+            return nvc.GetSplitStringValues(key, Enumerable.Empty<string>(), delimiter);
+        }
+
+        /// <summary>
+        /// Gets an array of string values split by a delimiter or fallback.
+        /// </summary>
+        /// <param name="nvc">The name value collection.</param>
+        /// <param name="key">The expected key.</param>
+        /// <param name="fallback">The fallback value if no value is found.</param>
+        /// <param name="delimiter">The <see cref="StringSplitDelimiters"/> to split the found value by.</param>
+        /// <returns>A <see><cref>IEnumerable{string}</cref></see>.</returns>
+        public static IEnumerable<string> GetSplitStringValues(this NameValueCollection nvc, string key, IEnumerable<string> fallback, StringSplitDelimiters delimiter = StringSplitDelimiters.Default)
+        {
+            return nvc.TryGetValue(key, out var value) ? value.SplitBy(delimiter) : fallback;
         }
 
         /// <summary>
