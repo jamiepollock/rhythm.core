@@ -22,15 +22,15 @@ Collection extension methods:
 
 NameValueCollection extension methods:
 
-* **GetBooleanValue** For a given key, attempts to return a boolean or fallback value.
-* **GetEnumValue<T>** for a given key, attempts to return a enum or fallback value.
-* **GetEnumValueIgnoreCase<T>** for a given key, attempts to return a enum or fallback value ignoring the case of the found value.
-* **GetIntegerValue** for a given key, attempts to return an integer or fallback value. Optional overload with NumberStyles and IFormatter parameters.
-* **GetStringValue** for a given key, attempts tp return a string or fallback value.
-* **GetSplitStringValues** for a given key, attempts to return a split string or fallback value.
-* **HasKey** checks if a given key exists.
-* **TryGetValue** checks if a value exists in the collection for a given key. Returns a boolean depending on success, also returns a string as an output value.
-* **TryGetValues** checks if values exist in the collection for a given key. Returns a boolean depending on success, also returns a IEnumerable<string> as an output value.
+* **GetBooleanValue** For a given key, attempts to return a `boolean` or fallback value.
+* **GetEnumValue** for a given key, attempts to return a `enum` or fallback value.
+* **GetEnumValueIgnoreCase** for a given key, attempts to return a `enum` or fallback value ignoring the case of the found value.
+* **GetIntegerValue** for a given key, attempts to return an `integer` or fallback value. Optional overload with `NumberStyles` and `IFormatter` parameters.
+* **GetStringValue** for a given key, attempts tp return a `string` or fallback value.
+* **GetSplitStringValues** for a given key, attempts to return a split `string` as a `IEnumerable<string>` or fallback value.
+* **HasKey** checks if a given key exists, returning a `boolean`.
+* **TryGetValue** checks if a value exists in the collection for a given key. Returns a `boolean` depending on success, also returns a string as an output value.
+* **TryGetValues** checks if values exist in the collection for a given key. Returns a `boolean` depending on success, also returns a `IEnumerable<string>` as an output value.
 
 String extension methods:
 
